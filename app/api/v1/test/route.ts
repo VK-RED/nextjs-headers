@@ -7,7 +7,7 @@ export async function PUT(req:NextRequest){
     console.log("Body : ", body);
 
     const origin = headers.get("origin");
-    // @ts-ignore
+    // @ts-expect-error
     const origin2 = headers.origin;
     const forwarded = headers.get("x-forwarded-host")
     const referrer = headers.get("referrer");
