@@ -1,27 +1,28 @@
-import { headers } from "next/headers";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(){
-    const headerList = await headers();
+export async function POST(req:NextRequest){
+    const headers = req.headers;
 
-    const originHeader = headerList.get("origin");
-    const forwarded    = headerList.get("x-forwarded-host")
+    const body = await req.json();
+    console.log("Body : ", body);
 
-    console.log("originHeader", originHeader);  
+    const origin = headers.get("origin");
+    const forwarded = headers.get("x-forwarded-host")
+
+    console.log("origin", origin);  
     console.log("forwarded", forwarded);
     
-    return NextResponse.json({originHeader, forwarded, headerList})
+    return NextResponse.json({origin, forwarded, headers})
 }
 
-export async function GET() {
-    const headerList = await headers();
+export async function GET(req:NextRequest) {
+    const headers = req.headers;
 
-    const originHeader = headerList.get("origin");
-    const forwarded    = headerList.get("x-forwarded-host")
+    const origin = headers.get("origin");
+    const forwarded = headers.get("x-forwarded-host")
 
-    console.log("originHeader", originHeader);  
+    console.log("origin", origin);  
     console.log("forwarded", forwarded);
     
-
-    return NextResponse.json({originHeader, forwarded, headerList})
+    return NextResponse.json({origin, forwarded, headers})
 }
