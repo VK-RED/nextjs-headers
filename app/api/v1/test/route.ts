@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req:NextRequest){
+export async function PUT(req:NextRequest){
     const headers = req.headers;
 
     const body = await req.json();
