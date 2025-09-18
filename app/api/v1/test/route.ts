@@ -11,14 +11,16 @@ export async function PUT(req:NextRequest){
     // ok
     const origin2 = headers.origin;
     const forwarded = headers.get("x-forwarded-host")
-    const referrer = headers.get("referrer");
+    const referrer = headers.get("referer");
+    const host = headers.get("host");
+    
 
     console.log("origin", origin);  
     console.log("origin2", origin2);
     console.log("forwarded", forwarded);
     console.log("referrer", referrer);
-
-    return NextResponse.json({origin, forwarded, headers})
+    console.log("host", host);
+    return NextResponse.json({origin, forwarded, headers, host})
 }
 
 export async function GET(req:NextRequest) {
